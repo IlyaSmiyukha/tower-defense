@@ -83,35 +83,6 @@ npm run preview
 - **ESLint** - Code linting and quality
 - **TypeScript ESLint** - TypeScript-specific linting rules
 - **React Hooks ESLint** - React hooks best practices
-- **Autoprefixer** - CSS vendor prefixing
-
-## 📁 Project Structure
-
-```
-src/
-├── classes/           # Game entity classes
-│   ├── Building.ts    # Tower/building logic
-│   ├── Enemy.ts       # Enemy behavior and movement
-│   ├── PlacementTile.ts # Tower placement areas
-│   ├── Projectile.ts  # Bullet/projectile physics
-│   └── Sprite.ts      # Base sprite class
-├── components/        # React components
-│   ├── Game.tsx       # Main game component
-│   ├── GameCanvas.tsx # Canvas wrapper
-│   ├── GameControls.tsx # UI controls
-│   ├── GameOver.tsx   # Game over screen
-│   └── GameWin.tsx    # Victory screen
-├── hooks/             # Custom React hooks
-│   └── useGame.ts     # Main game logic hook
-├── types/             # TypeScript type definitions
-│   ├── game.ts        # Game-related interfaces
-│   └── index.ts       # Type exports
-├── placementTilesData.ts # Tower placement grid data
-├── waypoints.ts       # Enemy path coordinates
-├── App.tsx           # Root component
-├── main.tsx          # Application entry point
-└── index.css         # Global styles
-```
 
 ## 🎨 Game Mechanics
 
@@ -142,14 +113,6 @@ src/
 - `npm run preview` - Preview production build
 - `npm run lint` - Run ESLint
 
-### Code Quality
-
-The project uses strict TypeScript configuration and comprehensive ESLint rules:
-- No unused variables or imports
-- Strict type checking
-- React hooks best practices
-- Modern ES2022+ features
-
 ## 🌟 Key Features Implementation
 
 ### Mobile-First Design
@@ -166,14 +129,6 @@ The project uses strict TypeScript configuration and comprehensive ESLint rules:
 - Progressive difficulty scaling
 - Strategic resource management
 - Multiple game speed options for different play styles
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
 
 ## 📝 License
 
