@@ -337,20 +337,38 @@ export const useGame = (
 
     // Handle click/tap for tower placement
     const handleClickOrTap = (event: MouseEvent | TouchEvent) => {
+      event.preventDefault()
+      event.stopPropagation()
+
       const coords = getEventCoordinates(event);
       if (!coords) return;
 
       const tile = findTileAtCoordinates(coords.x, coords.y);
 
-      // On mobile (touch), place tower immediately without hover
-      // On desktop, use existing activeTile system
-      const targetTile = 'touches' in event ? tile : activeTile;
+      // On mobile (touch), show brief visual feedback then place tower
+      if ('touches' in event) {
+        if (tile && !tile.isOccupied && gameState.coins >= 50) {
+          // Show green highlight briefly for visual feedback
+          setActiveTile(tile);
 
-      if (targetTile && !targetTile.isOccupied && gameState.coins >= 50) {
-        addBuilding({
-          x: targetTile.position.x,
-          y: targetTile.position.y
-        });
+          // Place tower after brief delay to show the green highlight
+          setTimeout(() => {
+            addBuilding({
+              x: tile.position.x,
+              y: tile.position.y
+            });
+            // Clear the highlight after placement
+            setActiveTile(null);
+          }, 100); // 100ms delay to show green highlight
+        }
+      } else {
+        // Desktop: use existing activeTile system
+        if (activeTile && !activeTile.isOccupied && gameState.coins >= 50) {
+          addBuilding({
+            x: activeTile.position.x,
+            y: activeTile.position.y
+          });
+        }
       }
     };
 
@@ -372,7 +390,8 @@ export const useGame = (
       if (!coords) return;
 
       setMouse({ x: coords.x, y: coords.y });
-      // Don't set activeTile on touch move to avoid hover effects
+      // Clear active tile on touch move to remove any focus/selection
+      setActiveTile(null);
     };
 
     // Add event listeners
